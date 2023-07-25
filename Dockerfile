@@ -2,7 +2,7 @@
 FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY package.json npm.lock ./
+COPY package.json package-lock.json ./
 RUN npm install --frozen-lockfile
 RUN npm install --global vercel@latest
 RUN vercel pull --yes --environment=preview --token="R2A8ExJWY4nyGJxsO90HxkG6"
