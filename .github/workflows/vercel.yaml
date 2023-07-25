@@ -14,7 +14,7 @@ jobs:
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
         run: |
-          docker build -it albertkaruna/nextjs:1.0.0 .
+          docker build -t albertkaruna/nextjs:1.0.0 .
           docker push albertkaruna/nextjs:1.0.0
           
       # - name: Deploy Project Artifacts to Vercel
