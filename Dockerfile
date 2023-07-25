@@ -25,6 +25,7 @@ ENV NODE_ENV production
 
 RUN addgroup --system --gid 1001 bloggroup
 RUN adduser --system --uid 1001 bloguser
+RUN apk --no-cache add curl
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
