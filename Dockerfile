@@ -13,7 +13,7 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-RUN npm install vercel@latest
+RUN npm install --global vercel@latest
 RUN vercel pull --yes --environment=preview --token="R2A8ExJWY4nyGJxsO90HxkG6"
 RUN vercel build --token="R2A8ExJWY4nyGJxsO90HxkG6"
 
