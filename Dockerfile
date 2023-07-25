@@ -4,8 +4,6 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install --frozen-lockfile
-RUN npm install --global vercel@latest
-RUN vercel pull --yes --environment=preview --token="R2A8ExJWY4nyGJxsO90HxkG6"
 # Rebuild the source code only when needed
 FROM node:16-alpine AS builder
 
@@ -15,6 +13,8 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
+RUN npm install vercel@latest
+RUN vercel pull --yes --environment=preview --token="R2A8ExJWY4nyGJxsO90HxkG6"
 RUN vercel build --token="R2A8ExJWY4nyGJxsO90HxkG6"
 
 # Production image, copy all the files and run next
